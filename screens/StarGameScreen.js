@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import Card from '../components/Card';
 import Input from '../components/Input';
 import Colors from '../constants/colors';
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
 import NumberContainer from '../components/NumberContainer';
 import {View, Text, Button, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
 
@@ -51,11 +53,11 @@ const StarGameScreen = (props) => {
         }}
     >
         <View style={styles.screen}>
-            <Text style={styles.title}>
+            <TitleText style={styles.title}>
                 Start a New Game!
-            </Text>
+            </TitleText>
             <Card style={styles.inputContainer}>
-                <Text> Select a Number</Text>
+                <BodyText> Select a Number</BodyText>
                 <Input style={styles.input} 
                     blurOnSubmit 
                     autoCapitalize='none' 
@@ -80,12 +82,12 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        fontFamily: 'open-sans'
     },
     title: {
         fontSize: 20,
         marginVertical: 10,
-        fontFamily: 'open-sans-bold'
     },
     inputContainer: {
         width: 300,
