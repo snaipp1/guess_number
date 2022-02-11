@@ -4,6 +4,7 @@ import Input from '../components/Input';
 import Colors from '../constants/colors';
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
+import MainButton from '../components/MainButton';
 import NumberContainer from '../components/NumberContainer';
 import {View, Text, Button, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
 
@@ -41,7 +42,7 @@ const StarGameScreen = (props) => {
                 <NumberContainer>
                     {selectedNumber}
                 </NumberContainer>
-                <Button title='START GAME' onPress={() => props.onStartGame(selectedNumber)}/>
+                <MainButton onPress={() => props.onStartGame(selectedNumber)}>START GAME</MainButton>
             </Card>
         )
     }

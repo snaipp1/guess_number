@@ -2,6 +2,7 @@ import React from 'react';
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
 import Colors from '../constants/colors';
+import MainButton from '../components/MainButton';
 import {View, Image, Button, Text, StyleSheet} from 'react-native';
 
 const GameOverScreen = (props) => {
@@ -20,7 +21,9 @@ const GameOverScreen = (props) => {
             Your phone needed <Text style={styles.highlight}>{props.userNumber}</Text> rounds to guess the number <Text style={styles.highlight}>{props.guessRounds}</Text>
           </BodyText>
         </View>
-        <Button title="NEW GAME" onPress={props.onRestart}/>
+        <MainButton onPress={props.onRestart}>
+          NEW GAME
+        </MainButton>
     </View>   
   );
 };
