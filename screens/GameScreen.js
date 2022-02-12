@@ -3,7 +3,7 @@ import NumberContainer from '../components/NumberContainer';
 import DefaultStyles from '../constants/default-styles';
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Alert } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
@@ -19,10 +19,9 @@ const generateRandomBetween = (min, max, exclude) => {
 };
 
 const GameScreen = (props) => {
-    const [currentGuess, setCurrentGuess] = useState(
-        generateRandomBetween(1, 100, props.userChoice)
-    );
-    const [rounds, setRounds] = useState(0);
+    const initialGuess = generateRandomBetween(1, 100, props.userChoice)
+    const [currentGuess, setCurrentGuess] = useState(initialGuess);
+    const [pastGuesses, setPastGuesses] = useState([initialGuess]);
 
     const currentLow = useRef(1);
     const currentHight = useRef(100);
@@ -30,7 +29,7 @@ const GameScreen = (props) => {
 
     useEffect(() => {
         if (currentGuess === userChoice) {
-            onGameOver(rounds);
+            onGameOver(pastGuesses.length);
         }
     }, [currentGuess, userChoice, onGameOver]);
 
@@ -46,7 +45,7 @@ const GameScreen = (props) => {
         }
         const nextNumber = generateRandomBetween(currentLow.current, currentHight.current, currentGuess);
         setCurrentGuess(nextNumber);
-        setRounds(curRounds => curRounds + 1);
+        setPastGuesses(curPassGuesses => [nextNumber,...curPassGuesses, ])
     };
 
   return (
@@ -65,6 +64,15 @@ const GameScreen = (props) => {
                 <Ionicons name='md-add' size={24} color='white'/>
             </MainButton>
         </Card>
+        <ScrollView>
+            {pastGuesses.map((guess) => ( 
+                <View key={guess}>
+                    <Text>
+                        {guess}
+                    </Text>
+                </View>
+            ))}
+        </ScrollView>
     </View>
   );
 };
