@@ -4,7 +4,7 @@ import DefaultStyles from '../constants/default-styles';
 import Card from '../components/Card';
 import MainButton from '../components/MainButton';
 import BodyText from '../components/BodyText';
-import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { Alert } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 
@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
  buttonContainer: {
      flexDirection: 'row',
      justifyContent: 'space-around',
-     marginTop: 20,
+     marginTop: Dimensions.get('window').height > 600 ? 20: 5 ,
      width: 350,
      maxWidth: '90%'
  },
  listContainer: {
      flex: 1,
-     width: '70%',     
+     width: Dimensions.get('window').width > 350 ? '70%' : '80%',     
  },
  list: {
      flexGrow: 1,
